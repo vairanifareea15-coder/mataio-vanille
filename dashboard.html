@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord — Mataio Vanille</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ÉCRAN DE CONNEXION -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">
+        <svg width="12" height="30" viewBox="0 0 6 20" xmlns="http://www.w3.org/2000/svg"><path d="M3,0.5 C1.5,0.5 0.5,3 0.5,7 L0.5,14 C0.5,17.5 1.5,19.5 3,19.5 C4.5,19.5 5.5,17.5 5.5,14 L5.5,7 C5.5,3 4.5,0.5 3,0.5 Z" fill="#C4748A"/></svg>
+        <span class="brand-name">Mataio Vanille</span>
+      </div>
+      <h2>Tableau de bord</h2>
+      <p>Accès réservé à la famille Mataio</p>
+      <form onsubmit="login(event)">
+        <input type="password" id="passwordInput" placeholder="Mot de passe" />
+        <button type="submit" class="btn-primary btn-full">Accéder</button>
+        <p class="login-error" id="loginError"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- TABLEAU DE BORD -->
+  <div id="dashboard" style="display:none">
+
+    <header class="dash-header">
+      <div class="dash-brand">
+        <svg width="9" height="24" viewBox="0 0 6 20" xmlns="http://www.w3.org/2000/svg"><path d="M3,0.5 C1.5,0.5 0.5,3 0.5,7 L0.5,14 C0.5,17.5 1.5,19.5 3,19.5 C4.5,19.5 5.5,17.5 5.5,14 L5.5,7 C5.5,3 4.5,0.5 3,0.5 Z" fill="#C4748A"/></svg>
+        <span class="brand-name">Mataio Vanille — Tableau de bord</span>
+      </div>
+      <div class="dash-nav">
+        <a href="index.html">Voir le site</a>
+        <button onclick="logout()" class="btn-logout">Déconnexion</button>
+      </div>
+    </header>
+
+    <!-- STATS -->
+    <div class="dash-stats">
+      <div class="dash-stat">
+        <div class="dash-stat-num" id="statCommandes">—</div>
+        <div class="dash-stat-label">Commandes totales</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-num" id="statChiffre">—</div>
+        <div class="dash-stat-label">Chiffre d'affaires (XPF)</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-num" id="statMoisCA">—</div>
+        <div class="dash-stat-label">Ce mois-ci (XPF)</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-num" id="statMessages">—</div>
+        <div class="dash-stat-label">Messages reçus</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-num" id="statProduit">—</div>
+        <div class="dash-stat-label">Produit le plus vendu</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" onclick="switchTab('commandes')">Commandes</button>
+      <button class="dash-tab" onclick="switchTab('messages')">Messages</button>
+      <button class="dash-tab" onclick="switchTab('stocks')">Stocks</button>
+      <button class="dash-tab" onclick="switchTab('galerie')">Galerie</button>
+      <button class="dash-tab" onclick="switchTab('avis')">Avis</button>
+    </div>
+
+    <!-- COMMANDES -->
+    <div id="tabCommandes" class="dash-section">
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Client</th>
+              <th>Email</th>
+              <th>Produits</th>
+              <th>Total</th>
+              <th>Livraison</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="commandesBody">
+            <tr><td colspan="7" class="dash-loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="tabMessages" class="dash-section" style="display:none">
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Sujet</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody id="messagesBody">
+            <tr><td colspan="5" class="dash-loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- STOCKS -->
+    <div id="tabStocks" class="dash-section" style="display:none">
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Prix (XPF)</th>
+              <th>Stock actuel</th>
+              <th>Modifier le stock</th>
+            </tr>
+          </thead>
+          <tbody id="stocksBody">
+            <tr><td colspan="4" class="dash-loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AVIS -->
+    <div id="tabAvis" class="dash-section" style="display:none">
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Produit</th>
+              <th>Auteur</th>
+              <th>Note</th>
+              <th>Commentaire</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="avisBody">
+            <tr><td colspan="6" class="dash-loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GALERIE -->
+    <div id="tabGalerie" class="dash-section" style="display:none">
+      <div class="galerie-header">
+        <h3>Photos du site</h3>
+        <button class="btn-primary" onclick="document.getElementById('addPhotoForm').style.display='block'">+ Ajouter une photo</button>
+      </div>
+
+      <div class="add-photo-form" id="addPhotoForm" style="display:none">
+        <input id="newUrl" type="text" placeholder="URL de la photo" />
+        <input id="newLegende" type="text" placeholder="Légende" />
+        <select id="newSection">
+          <option value="histoire">Histoire</option>
+          <option value="provenance">Provenance</option>
+        </select>
+        <div class="add-photo-actions">
+          <button class="btn-primary" onclick="ajouterPhoto()">Ajouter</button>
+          <button class="btn-outline" onclick="document.getElementById('addPhotoForm').style.display='none'">Annuler</button>
+        </div>
+      </div>
+
+      <div class="galerie-grid" id="galerieGrid"></div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

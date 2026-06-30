@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mataio Vanille — La vanille de Raiatea, Polynésie Française</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="navbar-root"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">Raiatea · Polynésie Française</p>
+      <h1>La Vanille de<br/>Notre Grand-Père</h1>
+      <p class="hero-sub">Depuis son île de Raiatea, notre grand-père cultive sa vanille avec passion et patience, comme le faisaient ses ancêtres. Ses petits-enfants vous la livrent directement, pour que son travail soit enfin connu du monde entier.</p>
+      <a href="#produits" class="btn-primary">Découvrir sa vanille</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=600&q=80"
+          alt="Gousses de vanille de Raiatea, Polynésie Française"
+          class="hero-photo"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">Ans de passion</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Île, une famille</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Artisanal & Naturel</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">PF</span>
+      <span class="stat-label">Raiatea, Polynésie</span>
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="produits" id="produits">
+    <div class="section-header">
+      <h2>Les Produits de Papi Mataio</h2>
+      <p>Cultivés à la main à Raiatea, expédiés directement depuis l'île</p>
+    </div>
+    <div class="currency-bar">
+      <span class="currency-label">Devise :</span>
+      <div class="currency-switcher">
+        <button class="currency-btn active" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
+        <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
+        <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD')">USD</button>
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="histoire" id="histoire">
+    <div class="section-header">
+      <h2>L'histoire de Papi Mataio</h2>
+      <p>Une île isolée, une passion transmise, une famille unie</p>
+    </div>
+
+    <div class="histoire-photos" id="galerieHistoire">
+      <div class="histoire-photo-main">
+        <img src="https://images.unsplash.com/photo-1676405328043-85738f8473ba?auto=format&fit=crop&w=900&q=80" alt="Vue aérienne de Raiatea" />
+        <div class="histoire-photo-caption">Raiatea vue du ciel — l'île sacrée de Polynésie</div>
+      </div>
+      <div class="histoire-photo-side">
+        <img src="https://images.unsplash.com/photo-1665904457714-df18e8c142a1?auto=format&fit=crop&w=500&q=80" alt="Lagon de Raiatea" />
+        <div class="histoire-photo-caption">Le lagon cristallin qui entoure l'île</div>
+      </div>
+    </div>
+
+    <div class="histoire-content">
+      <div class="histoire-card">
+        <div class="histoire-num">01</div>
+        <h3>Le grand-père</h3>
+        <p>Depuis plus de 30 ans, notre grand-père cultive sa vanille sur l'île de Raiatea. Ses mains connaissent chaque plante, chaque gousse. Il a appris ce savoir-faire de ses propres parents, qui le tenaient de leurs ancêtres polynésiens.</p>
+      </div>
+      <div class="histoire-card">
+        <div class="histoire-num">02</div>
+        <h3>L'île de Raiatea</h3>
+        <p>Raiatea est une île isolée de Polynésie Française, considérée comme l'île sacrée par les Polynésiens. Loin des circuits commerciaux, la vanille y pousse dans un environnement préservé, sous un soleil tropical généreux.</p>
+      </div>
+      <div class="histoire-card">
+        <div class="histoire-num">03</div>
+        <h3>Les petits-enfants</h3>
+        <p>Nous sommes ses petits-enfants. Partis étudier et travailler sur le continent, nous voulons que le monde découvre la vanille de Papi. Ce site, c'est notre façon de l'aider et de prolonger son héritage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVENANCE -->
+  <section class="provenance" id="provenance">
+    <div class="provenance-content">
+      <div class="provenance-text">
+        <h2>De Raiatea à votre cuisine</h2>
+        <p>La vanille de notre grand-père pousse sur son lopin de terre à Raiatea, île volcanique de Polynésie Française. Loin des grandes exploitations industrielles, chaque plant est soigné à la main, avec une attention que seul un cultivateur passionné peut apporter.</p>
+        <p>Chaque gousse est cueillie à maturité optimale, puis séchée selon un processus artisanal de plusieurs mois. Le résultat : une vanille charnue, profondément parfumée, aux notes florales typiques de la Polynésie.</p>
+        <ul class="features">
+          <li>Cultivée à la main à Raiatea, Polynésie Française</li>
+          <li>Zéro pesticide, zéro intrant chimique</li>
+          <li>Production familiale et artisanale</li>
+          <li>Emballage sous vide pour fraîcheur optimale</li>
+        </ul>
+      </div>
+      <div class="provenance-map">
+        <div class="map-card">
+          <div class="map-photo">
+            <img src="https://images.unsplash.com/photo-1712960258445-35ea82a94393?auto=format&fit=crop&w=600&q=80" alt="Montagnes de Raiatea" />
+          </div>
+          <div class="map-card-body">
+            <div class="map-icon">
+              <svg width="36" height="36" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g transform="translate(10,10)">
+                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85"/>
+                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(72)"/>
+                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(144)"/>
+                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(216)"/>
+                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(288)"/>
+                  <circle r="2.5" fill="#C4974A"/>
+                </g>
+              </svg>
+            </div>
+            <h3>Raiatea</h3>
+            <p>Polynésie Française</p>
+            <span class="map-tag">L'île sacrée</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="avis">
+    <div class="section-header">
+      <h2>Ce que disent nos clients</h2>
+    </div>
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>"J'ai reçu mes gousses et j'ai pleuré. Ça m'a rappelé la vanille de ma grand-mère à Tahiti. Une qualité qu'on ne trouve plus en France. Merci infiniment à toute la famille !"</p>
+        <span class="client-name">— Hina T., Papeete</span>
+      </div>
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>"J'ai découvert cette boutique sur Instagram. L'histoire du grand-père m'a touchée. La vanille est sublime — florale, charnue, rien à voir avec ce qu'on achète en supermarché."</p>
+        <span class="client-name">— Marie-Claire D., Pâtissière, Lyon</span>
+      </div>
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>"Produit exceptionnel et histoire magnifique. On sent que c'est fait avec amour. Je commande régulièrement et j'offre leurs packs à mes proches. Continuez ainsi !"</p>
+        <span class="client-name">— Thomas R., Chef cuisinier, Paris</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <h2>Nous contacter</h2>
+      <p>Une question sur nos produits ou l'histoire de Papi Mataio ? On vous répond avec plaisir.</p>
+    </div>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <input id="contactNom" type="text" placeholder="Votre prénom" required />
+        <input id="contactEmail" type="email" placeholder="Votre email" required />
+      </div>
+      <input id="contactSujet" type="text" placeholder="Sujet" />
+      <textarea id="contactMessage" placeholder="Votre message..." rows="5" required></textarea>
+      <button type="submit" class="btn-primary btn-full" id="contactBtn">Envoyer le message</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="brand-name">Mataio Vanille</span>
+        <p>La vanille artisanale de Papi Mataio, cultivée à Raiatea, Polynésie Française. Une histoire de famille, un produit d'exception.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="#produits">Produits</a>
+        <a href="#histoire">Notre Histoire</a>
+        <a href="#provenance">Notre Vanille</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>contact@mataio-vanille.fr</p>
+        <p>Raiatea, Polynésie Française</p>
+        <p>Famille Mataio</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Mataio Vanille — Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <div id="cart-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/shared.js"></script>
+  <script>initNavbar('index'); initCart();</script>
+  <script src="js/app.js"></script>
+</body>
+</html>

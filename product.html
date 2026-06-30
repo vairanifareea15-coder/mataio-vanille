@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produit — Mataio Vanille</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/product.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="navbar-root"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span>›</span>
+    <a href="index.html#produits">Produits</a>
+    <span>›</span>
+    <span id="breadcrumbName">…</span>
+  </div>
+
+  <!-- FICHE PRODUIT -->
+  <section class="product-detail" id="productDetail">
+    <div class="product-detail-loading">Chargement…</div>
+  </section>
+
+  <!-- TABS -->
+  <section class="product-tabs-section" id="productTabsSection" style="display:none">
+    <div class="tabs">
+      <button class="tab active" data-tab="description" onclick="switchTab('description')">Description</button>
+      <button class="tab" data-tab="utilisation" onclick="switchTab('utilisation')">Utilisation</button>
+      <button class="tab" data-tab="avis" onclick="switchTab('avis')">Avis clients</button>
+    </div>
+    <div class="tab-content" id="tabDescription"></div>
+    <div class="tab-content" id="tabUtilisation" style="display:none"></div>
+    <div class="tab-content" id="tabAvis" style="display:none"></div>
+  </section>
+
+  <!-- PRODUITS SIMILAIRES -->
+  <section class="related-section" id="relatedSection" style="display:none">
+    <div class="section-header">
+      <h2>Vous aimerez aussi</h2>
+    </div>
+    <div class="products-grid" id="relatedGrid"></div>
+  </section>
+
+  <div id="cart-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/shared.js"></script>
+  <script>initNavbar('product'); initCart();</script>
+  <script src="js/product.js"></script>
+</body>
+</html>

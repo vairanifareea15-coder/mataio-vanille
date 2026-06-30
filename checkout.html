@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commander — Mataio Vanille</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="navbar-root"></div>
+
+  <!-- ÉTAPES -->
+  <div class="checkout-steps">
+    <div class="step active" id="step-indicator-1">
+      <div class="step-circle">1</div>
+      <span>Livraison</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step-indicator-2">
+      <div class="step-circle">2</div>
+      <span>Paiement</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step-indicator-3">
+      <div class="step-circle">3</div>
+      <span>Confirmation</span>
+    </div>
+  </div>
+
+  <!-- CONTENU CHECKOUT -->
+  <div class="checkout-layout">
+
+    <!-- FORMULAIRES -->
+    <div class="checkout-forms">
+
+      <!-- ÉTAPE 1 : LIVRAISON -->
+      <div id="formStep1">
+        <h2 class="form-title">Informations de livraison</h2>
+        <form id="deliveryForm" onsubmit="goToStep2(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom *</label>
+              <input type="text" id="firstName" placeholder="Marie" required />
+            </div>
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" id="lastName" placeholder="Dupont" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" placeholder="marie@exemple.fr" required />
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" id="phone" placeholder="+33 6 12 34 56 78" />
+          </div>
+          <div class="form-group">
+            <label>Adresse *</label>
+            <input type="text" id="address" placeholder="12 rue de la Paix" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Code postal *</label>
+              <input type="text" id="postal" placeholder="75001" required />
+            </div>
+            <div class="form-group">
+              <label>Ville *</label>
+              <input type="text" id="city" placeholder="Paris" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Pays</label>
+            <select id="country">
+              <option value="FR">France</option>
+              <option value="BE">Belgique</option>
+              <option value="CH">Suisse</option>
+              <option value="LU">Luxembourg</option>
+            </select>
+          </div>
+
+          <h3 class="form-subtitle">Mode de livraison</h3>
+          <div class="shipping-options">
+            <label class="shipping-option selected" id="ship-standard">
+              <input type="radio" name="shipping" value="standard" checked onchange="updateShipping(this)" />
+              <div class="shipping-option-info">
+                <div class="shipping-name">Livraison standard</div>
+                <div class="shipping-delay">3-5 jours ouvrés</div>
+              </div>
+              <div class="shipping-price">Gratuit</div>
+            </label>
+            <label class="shipping-option" id="ship-express">
+              <input type="radio" name="shipping" value="express" onchange="updateShipping(this)" />
+              <div class="shipping-option-info">
+                <div class="shipping-name">Livraison express</div>
+                <div class="shipping-delay">24-48h</div>
+              </div>
+              <div class="shipping-price">4,90 €</div>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary btn-full btn-next">Continuer vers le paiement →</button>
+        </form>
+      </div>
+
+      <!-- ÉTAPE 2 : PAIEMENT -->
+      <div id="formStep2" style="display:none">
+        <h2 class="form-title">Informations de paiement</h2>
+        <form id="paymentForm" onsubmit="goToStep3(event)">
+          <div class="form-group">
+            <label>Numéro de carte *</label>
+            <div class="card-input-wrap">
+              <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456"
+                maxlength="19" oninput="formatCard(this)" required />
+              <span class="card-icons">💳</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Titulaire de la carte *</label>
+            <input type="text" id="cardName" placeholder="MARIE DUPONT" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date d'expiration *</label>
+              <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5"
+                oninput="formatExpiry(this)" required />
+            </div>
+            <div class="form-group">
+              <label>CVV *</label>
+              <input type="text" id="cardCvv" placeholder="123" maxlength="3"
+                oninput="this.value=this.value.replace(/\D/g,'')" required />
+            </div>
+          </div>
+
+          <div class="secure-notice">
+            Vos données bancaires sont chiffrées et sécurisées. Nous ne conservons aucune information de paiement.
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn-back" onclick="backToStep1()">← Retour</button>
+            <button type="submit" class="btn-primary btn-next">Confirmer la commande →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ÉTAPE 3 : CONFIRMATION -->
+      <div id="formStep3" style="display:none">
+        <div class="confirmation-box">
+          <div class="confirmation-icon">✅</div>
+          <h2>Commande confirmée !</h2>
+          <p>Merci pour votre commande. Un email de confirmation a été envoyé à <strong id="confirmEmail"></strong>.</p>
+          <p>Votre colis sera expédié dans les 48h. Vous recevrez un email de suivi dès l'expédition.</p>
+          <div class="order-ref">N° de commande : <strong id="orderRef"></strong></div>
+          <a href="index.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block">← Retour à la boutique</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RÉCAPITULATIF COMMANDE -->
+    <aside class="order-summary" id="orderSummary">
+      <h3>Récapitulatif</h3>
+      <div class="summary-items" id="summaryItems"></div>
+      <div class="summary-line">
+        <span>Sous-total</span>
+        <span id="summarySubtotal"></span>
+      </div>
+      <div class="summary-line" id="summaryShippingLine">
+        <span>Livraison</span>
+        <span id="summaryShipping">Gratuit</span>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="summaryTotal"></span>
+      </div>
+      <div class="summary-secure">
+        Paiement 100% sécurisé<br/>
+        Produits 100% naturels<br/>
+        Expédition sous 48h
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/shared.js"></script>
+  <script>initNavbar('checkout');</script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
