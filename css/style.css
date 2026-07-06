@@ -1346,6 +1346,7 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 640px) {
   .navbar { padding: 1rem 5%; }
+  .nav-brand { position: static; transform: none; text-align: left; flex: 1; }
   .nav-links { display: none; }
   .hamburger-btn { display: flex; }
   .mobile-menu { display: flex; }
