@@ -11,20 +11,20 @@ function renderProductCard(p) {
   const bgColor = p.bg || '#E7DBC6';
   return `
     <article class="vn-product-card">
-      <a href="product.html?id=${p.id}" class="vn-product-img vn-stripe" style="background:${bgColor};">
-        <img src="${imgSrc}" alt="${p.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
-        ${epuise ? '<span class="vn-product-badge epuise">Épuisé</span>' : p.badge ? `<span class="vn-product-badge">${p.badge}</span>` : ''}
+      <a href="product.html?id=${p.id}" class="vn-product-img vn-stripe" style="background:${esc(bgColor)};">
+        <img src="${esc(imgSrc)}" alt="${esc(p.name)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+        ${epuise ? '<span class="vn-product-badge epuise">Épuisé</span>' : p.badge ? `<span class="vn-product-badge">${esc(p.badge)}</span>` : ''}
       </a>
       <div class="vn-product-body">
         <div class="vn-product-meta">
-          <a href="product.html?id=${p.id}" class="vn-product-name">${p.name}</a>
+          <a href="product.html?id=${p.id}" class="vn-product-name">${esc(p.name)}</a>
           <span class="vn-product-price">${formatPrice(p.price_xpf)}</span>
         </div>
         <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
           <span style="color:#9A6B3F;font-size:12px;letter-spacing:1px;">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
           <span style="font-size:12px;color:#8A7457;">(${p.review_count})</span>
         </div>
-        <p class="vn-product-desc">${p.short_desc}</p>
+        <p class="vn-product-desc">${esc(p.short_desc)}</p>
         <div style="display:flex;gap:8px;margin-top:auto;">
           <a href="product.html?id=${p.id}" class="vn-view-btn">Voir</a>
           ${epuise
@@ -39,7 +39,15 @@ function renderProductCard(p) {
 async function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
-  grid.innerHTML = '<p style="text-align:center;color:var(--gris);padding:3rem">Chargement…</p>';
+  // Skeleton de chargement
+  grid.innerHTML = Array(3).fill(`
+    <div class="vn-skeleton-card">
+      <div class="vn-skeleton vn-skeleton-img"></div>
+      <div class="vn-skeleton vn-skeleton-line"></div>
+      <div class="vn-skeleton vn-skeleton-line short"></div>
+      <div class="vn-skeleton vn-skeleton-line short"></div>
+    </div>
+  `).join('');
 
   const { data, error } = await sb.from('produits').select('*').order('id');
   if (error || !data) { grid.innerHTML = ''; return; }
@@ -58,6 +66,8 @@ async function addToCartFromDB(id) {
 
 async function submitForm(e) {
   e.preventDefault();
+  // Honeypot : si rempli c'est un bot
+  if (document.getElementById('honeypot')?.value) return;
   const btn = document.getElementById('contactBtn');
   btn.textContent = 'Envoi en cours…';
   btn.disabled = true;
@@ -110,4 +120,18 @@ async function loadGalerie() {
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   loadGalerie();
+  initScrollReveal();
 });
+
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.vn-reveal').forEach(el => observer.observe(el));
+}

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -21,7 +21,8 @@
       <h2>Tableau de bord</h2>
       <p>Accès réservé à la famille Mataio</p>
       <form onsubmit="login(event)">
-        <input type="password" id="passwordInput" placeholder="Mot de passe" />
+        <input type="email" id="emailInput" placeholder="Email" autocomplete="email" />
+        <input type="password" id="passwordInput" placeholder="Mot de passe" autocomplete="current-password" />
         <button type="submit" class="btn-primary btn-full">Accéder</button>
         <p class="login-error" id="loginError"></p>
       </form>

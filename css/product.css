@@ -121,7 +121,7 @@
 }
 
 .pd-price {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--brown);
@@ -351,7 +351,7 @@
 }
 
 .avis-form-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   font-size: 1.1rem;
   color: var(--brun);
@@ -390,7 +390,7 @@
   border: 1px solid var(--gris-clair);
   border-bottom: 2px solid var(--gris-clair);
   background: var(--blanc);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 0.88rem;
   color: var(--brun);
   outline: none;

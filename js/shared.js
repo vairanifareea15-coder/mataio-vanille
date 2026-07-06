@@ -1,18 +1,31 @@
 'use strict';
 
+// ===== SÉCURITÉ =====
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // ===== DEVISES =====
 // 1 EUR = 119.33174 XPF (taux fixe officiel)
 // 1 USD ≈ 110.50 XPF (taux approximatif)
 const RATES = { XPF: 1, EUR: 1 / 119.33174, USD: 1 / 110.50 };
-let currentCurrency = 'XPF';
+let currentCurrency = localStorage.getItem('mataio_currency') || 'XPF';
 
 function setCurrency(currency) {
   currentCurrency = currency;
+  localStorage.setItem('mataio_currency', currency);
   document.querySelectorAll('.currency-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.currency === currency);
   });
   // Rafraîchir tous les prix affichés
   if (typeof renderProducts === 'function') renderProducts();
+  if (typeof refreshProductPagePrices === 'function') refreshProductPagePrices();
+  if (typeof renderSummary === 'function') renderSummary();
   updateCartUI();
 }
 
@@ -168,7 +181,7 @@ function updateCartUI() {
     <div class="cart-item">
       <div class="cart-item-dot"></div>
       <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-name">${esc(item.name)}</div>
         <div class="cart-item-price">${formatPrice(item.priceXPF * item.qty)}</div>
       </div>
       <div class="cart-item-controls">
@@ -182,6 +195,17 @@ function updateCartUI() {
   const totalEl = document.getElementById('cartTotal');
   if (totalEl) totalEl.textContent = formatPrice(getTotalXPF());
   if (footerEl) footerEl.style.display = 'block';
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const btn = document.querySelector('.hamburger-btn');
+  if (!menu) return;
+  menu.classList.toggle('active');
+  overlay.classList.toggle('active');
+  btn.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
 
 function toggleCart() {
@@ -245,8 +269,19 @@ function initNavbar(type) {
         <button class="cart-btn" onclick="toggleCart()">
           Panier <span class="cart-count" id="cartCount">0</span>
         </button>
+        <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </header>`;
+    </header>
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="${base}#produits" onclick="toggleMobileMenu()">Boutique</a>
+      <a href="${base}#origine" onclick="toggleMobileMenu()">Origine</a>
+      <a href="${base}#produits" onclick="toggleMobileMenu()">Savoir-faire</a>
+      <a href="${base}#contact" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>`;
 }
 
 function initCart() {
@@ -276,4 +311,12 @@ function initCart() {
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   updateCartUI();
+  // Synchroniser l'état des boutons devise avec la valeur sauvegardée
+  document.querySelectorAll('.currency-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.currency === currentCurrency);
+  });
+  // Rafraîchir les prix si la devise n'est pas XPF
+  if (currentCurrency !== 'XPF' && typeof renderProducts === 'function') {
+    renderProducts();
+  }
 });

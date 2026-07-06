@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /supabase/
+
+Sitemap: https://mataio-vanille.netlify.app/sitemap.xml

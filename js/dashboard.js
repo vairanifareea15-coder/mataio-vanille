@@ -1,25 +1,27 @@
 'use strict';
 
-const MOT_DE_PASSE = 'mataio2026';
-
 const sb = supabase.createClient(
   'https://wggdfxekesluqprxhomk.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnZ2RmeGVrZXNsdXFwcnhob21rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1MTA5NzgsImV4cCI6MjA5ODA4Njk3OH0.MClwLc6FFBwFdBjJzokm6FrZQ5VEjMst9MZJNRlDWvA'
 );
 
-function login(e) {
+async function login(e) {
   e.preventDefault();
-  const val = document.getElementById('passwordInput').value;
-  if (val === MOT_DE_PASSE) {
-    sessionStorage.setItem('dash_auth', '1');
-    showDashboard();
+  const email    = document.getElementById('emailInput').value.trim();
+  const password = document.getElementById('passwordInput').value;
+  const errEl    = document.getElementById('loginError');
+  errEl.textContent = '';
+
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if (error) {
+    errEl.textContent = 'Email ou mot de passe incorrect.';
   } else {
-    document.getElementById('loginError').textContent = 'Mot de passe incorrect.';
+    showDashboard();
   }
 }
 
-function logout() {
-  sessionStorage.removeItem('dash_auth');
+async function logout() {
+  await sb.auth.signOut();
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
 }
@@ -148,21 +150,8 @@ async function updateStatut(e, select) {
   if (newStatut === 'expédiée') {
     const { data } = await sb.from('commandes').select('prenom,email,total').eq('id', id).single();
     if (data?.email) {
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer re_WMbyTRYp_Gb9HmS3NtGLwHWJEDNf5QBLS',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'Mataio Vanille <onboarding@resend.dev>',
-          to: ['nanifareea@icloud.com'],
-          subject: `Votre commande Mataio Vanille a été expédiée`,
-          html: `<h2>Bonjour ${data.prenom},</h2>
-                 <p>Votre commande de <strong>${(data.total || 0).toLocaleString('fr-FR')} XPF</strong> a été expédiée depuis Raiatea.</p>
-                 <p>Vous la recevrez dans les prochains jours. Merci pour votre confiance.</p>
-                 <p>— La famille Mataio</p>`,
-        }),
+      await sb.functions.invoke('envoyer-email', {
+        body: { prenom: data.prenom, email: data.email, total: data.total },
       });
     }
   }
@@ -245,8 +234,7 @@ async function loadAll() {
   }).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (sessionStorage.getItem('dash_auth') === '1') {
-    showDashboard();
-  }
+document.addEventListener('DOMContentLoaded', async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) showDashboard();
 });

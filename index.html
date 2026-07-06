@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mataio Vanille — La vanille de Raiatea, Polynésie Française</title>
+  <meta name="description" content="Vanille de Tahiti artisanale, cultivée et préparée par notre grand-père à Raiatea, Polynésie Française. Vente directe, sans intermédiaire." />
+  <meta property="og:title" content="Mataio Vanille — La vanille de Raiatea" />
+  <meta property="og:description" content="Gousses charnues et parfumées, préparées à la main par Papi Mataio sur l'île de Raiatea. Expédiées directement par sa famille." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -53,7 +60,7 @@
   </div>
 
   <!-- PRODUITS -->
-  <section id="produits" class="vn-pad vn-section-produits">
+  <section id="produits" class="vn-pad vn-section-produits vn-reveal">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:54px;flex-wrap:wrap;gap:20px;">
       <div>
         <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9A6B3F;margin-bottom:14px;">La sélection</div>
@@ -62,7 +69,7 @@
       <div class="currency-bar" style="margin-bottom:0;">
         <span class="currency-label">Devise :</span>
         <div class="currency-switcher">
-          <button class="currency-btn active" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
+          <button class="currency-btn" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
           <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
           <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD')">USD</button>
         </div>
@@ -74,7 +81,7 @@
   </section>
 
   <!-- ORIGINE -->
-  <section id="origine" class="vn-split" style="background:#ECE2D0;">
+  <section id="origine" class="vn-split vn-reveal" style="background:#ECE2D0;">
     <div class="vn-stripe vn-imgpanel" style="position:relative;min-height:580px;background:#DDCFB4;overflow:hidden;">
       <img
         id="origineImg"
@@ -107,7 +114,7 @@
   </section>
 
   <!-- SAVOIR-FAIRE / PILIERS -->
-  <section class="vn-pad" style="padding-top:90px;padding-bottom:90px;">
+  <section class="vn-pad vn-reveal" style="padding-top:90px;padding-bottom:90px;">
     <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4vw,56px);text-align:center;margin-bottom:64px;line-height:1;">Pourquoi notre vanille</h2>
     <div class="vn-grid3" style="border-top:1px solid rgba(58,42,30,0.12);border-bottom:1px solid rgba(58,42,30,0.12);gap:1px;background:rgba(58,42,30,0.12);">
       <div style="background:#F6F0E6;padding:46px 38px;">
@@ -163,7 +170,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="vn-pad" style="padding-top:90px;padding-bottom:90px;">
+  <section class="vn-pad vn-reveal" style="padding-top:90px;padding-bottom:90px;">
     <div style="max-width:720px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:48px;">
         <div style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#9A6B3F;margin-bottom:18px;">Questions fréquentes</div>
@@ -182,6 +189,7 @@
         <p style="margin-top:14px;font-size:15px;color:#6B5644;font-weight:300;">Une question sur nos produits ou l'histoire de Papi Mataio ? On vous répond avec plaisir.</p>
       </div>
       <form class="contact-form" onsubmit="submitForm(event)">
+        <input type="text" name="website" id="honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
         <div class="form-row">
           <input id="contactNom" type="text" placeholder="Votre prénom" required />
           <input id="contactEmail" type="email" placeholder="Votre email" required />

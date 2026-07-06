@@ -17,10 +17,9 @@ function renderProduct(product) {
   document.title = `${product.name} — Mataio Vanille`;
   document.getElementById('breadcrumbName').textContent = product.name;
 
-  const hasPhoto = product.id === 1;
-  const imageHTML = hasPhoto
+  const imageHTML = product.image
     ? `<img src="${product.image}" alt="${product.name}" />`
-    : `<div class="pd-emoji-bg" style="background:${product.bg}">${product.emoji}</div>`;
+    : `<div class="pd-emoji-bg" style="background:${product.bg || '#E7DBC6'}">${product.emoji || ''}</div>`;
 
   document.getElementById('productDetail').innerHTML = `
     <div class="pd-image-wrap">
@@ -43,12 +42,20 @@ function renderProduct(product) {
         <span class="pd-rating-count">(${product.reviewCount} avis)</span>
       </div>
 
-      <div class="pd-price-wrap">
-        <span class="pd-price">${formatPrice(product.priceXPF)}</span>
-        <span class="pd-unit">/ ${product.unit}</span>
+      <div class="currency-bar" style="margin-bottom:12px;">
+        <span class="currency-label">Devise :</span>
+        <div class="currency-switcher">
+          <button class="currency-btn ${currentCurrency === 'XPF' ? 'active' : ''}" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
+          <button class="currency-btn ${currentCurrency === 'EUR' ? 'active' : ''}" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
+          <button class="currency-btn ${currentCurrency === 'USD' ? 'active' : ''}" data-currency="USD" onclick="setCurrency('USD')">USD</button>
+        </div>
       </div>
-      ${product.pricePerKgXPF ? `<p class="pd-price-kg">soit ${formatPrice(product.pricePerKgXPF)} / kg</p>` : ''}
-      <p class="pd-shipping">Livraison gratuite dès 2 000 XPF</p>
+      <div class="pd-price-wrap">
+        <span class="pd-price" id="pdPrice">${formatPrice(product.priceXPF)}</span>
+        <span class="pd-unit">/ ${esc(product.unit)}</span>
+      </div>
+      ${product.pricePerKgXPF ? `<p class="pd-price-kg" id="pdPriceKg">soit ${formatPrice(product.pricePerKgXPF)} / kg</p>` : ''}
+      <p class="pd-shipping">Livraison gratuite dès ${formatPrice(2000)}</p>
 
       <p class="pd-short-desc">${product.shortDesc}</p>
 
@@ -116,13 +123,13 @@ async function loadAvis(produitId) {
     ? avis.map(r => `
       <div class="review-card">
         <div class="review-header">
-          <div class="review-avatar">${r.auteur[0].toUpperCase()}</div>
+          <div class="review-avatar">${esc(r.auteur[0].toUpperCase())}</div>
           <div>
-            <div class="review-author">${r.auteur}</div>
+            <div class="review-author">${esc(r.auteur)}</div>
             <div class="review-stars">${'★'.repeat(r.note)}${'☆'.repeat(5 - r.note)}</div>
           </div>
         </div>
-        <p class="review-text">${r.commentaire}</p>
+        <p class="review-text">${esc(r.commentaire)}</p>
       </div>
     `).join('')
     : '<p class="avis-vide">Aucun avis pour ce produit. Soyez le premier !</p>';
@@ -190,6 +197,16 @@ async function soumettreAvis(produitId) {
   }
 }
 
+function refreshProductPagePrices() {
+  if (!currentProduct) return;
+  const priceEl = document.getElementById('pdPrice');
+  const priceKgEl = document.getElementById('pdPriceKg');
+  const addBtn = document.querySelector('.pd-add-btn');
+  if (priceEl) priceEl.textContent = formatPrice(currentProduct.priceXPF);
+  if (priceKgEl) priceKgEl.textContent = `soit ${formatPrice(currentProduct.pricePerKgXPF)} / kg`;
+  if (addBtn) addBtn.textContent = `Ajouter au panier — ${formatPrice(currentProduct.priceXPF * selectedQty)}`;
+}
+
 function changeSelectedQty(delta) {
   selectedQty = Math.max(1, selectedQty + delta);
   document.getElementById('selectedQtyDisplay').textContent = selectedQty;
@@ -228,12 +245,32 @@ function switchTab(tab) {
   document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`).style.display = 'block';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const id = getProductIdFromURL();
-  currentProduct = PRODUCTS.find(p => p.id === id);
-  if (!currentProduct) {
+  const local = PRODUCTS.find(p => p.id === id);
+
+  if (!local) {
     document.getElementById('productDetail').innerHTML = '<p style="text-align:center;padding:4rem;color:var(--gray)">Produit introuvable.</p>';
     return;
   }
+
+  // Afficher immédiatement avec les données locales
+  currentProduct = { ...local };
   renderProduct(currentProduct);
+
+  // Mettre à jour prix et stock depuis Supabase
+  const { data } = await sbProduct.from('produits').select('price_xpf,price_per_kg_xpf,stock,badge,rating,review_count,image').eq('id', id).single();
+  if (data) {
+    currentProduct = {
+      ...local,
+      priceXPF:       data.price_xpf       ?? local.priceXPF,
+      pricePerKgXPF:  data.price_per_kg_xpf ?? local.pricePerKgXPF,
+      stock:          data.stock,
+      badge:          data.badge            ?? local.badge,
+      rating:         data.rating           ?? local.rating,
+      reviewCount:    data.review_count     ?? local.reviewCount,
+      image:          data.image            ?? local.image,
+    };
+    renderProduct(currentProduct);
+  }
 });
