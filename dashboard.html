@@ -61,6 +61,10 @@
         <div class="dash-stat-num" id="statMessages">—</div>
         <div class="dash-stat-label">Messages reçus</div>
       </div>
+      <div class="dash-stat" id="statAvisWrap" style="cursor:pointer" onclick="document.querySelector('[onclick*=avis]').click()">
+        <div class="dash-stat-num" id="statAvisEnAttente">—</div>
+        <div class="dash-stat-label">Avis en attente</div>
+      </div>
       <div class="dash-stat">
         <div class="dash-stat-num" id="statProduit">—</div>
         <div class="dash-stat-label">Produit le plus vendu</div>
@@ -73,7 +77,7 @@
       <button class="dash-tab" onclick="switchTab('messages')">Messages</button>
       <button class="dash-tab" onclick="switchTab('stocks')">Stocks</button>
       <button class="dash-tab" onclick="switchTab('galerie')">Galerie</button>
-      <button class="dash-tab" onclick="switchTab('avis')">Avis</button>
+      <button class="dash-tab" onclick="switchTab('avis')">Avis <span class="dash-badge" id="avisBadge" style="display:none"></span></button>
     </div>
 
     <!-- COMMANDES -->

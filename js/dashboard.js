@@ -60,20 +60,32 @@ async function loadAvisDash() {
   const nomsMap = {};
   (produits || []).forEach(p => nomsMap[p.id] = p.name);
 
+  const enAttente = (avis || []).filter(a => !a.valide).length;
+  const badge = document.getElementById('avisBadge');
+  const statEl = document.getElementById('statAvisEnAttente');
+  const statWrap = document.getElementById('statAvisWrap');
+
+  if (badge) {
+    badge.textContent = enAttente;
+    badge.style.display = enAttente > 0 ? 'inline-flex' : 'none';
+  }
+  if (statEl) statEl.textContent = enAttente;
+  if (statWrap) statWrap.style.borderColor = enAttente > 0 ? 'var(--rose)' : '';
+
   const body = document.getElementById('avisBody');
   if (!avis || avis.length === 0) {
     body.innerHTML = '<tr><td colspan="6" class="dash-loading">Aucun avis</td></tr>';
     return;
   }
   body.innerHTML = avis.map(a => `
-    <tr>
+    <tr style="${!a.valide ? 'background:rgba(196,116,138,0.07);' : ''}">
       <td>${formatDate(a.created_at)}</td>
       <td>${nomsMap[a.produit_id] || '—'}</td>
       <td>${a.auteur}</td>
       <td>${'★'.repeat(a.note)}${'☆'.repeat(5 - a.note)}</td>
       <td>${a.commentaire}</td>
       <td>
-        ${!a.valide ? `<button class="btn-valider" onclick="validerAvis(${a.id})">Valider</button>` : '<span style="color:var(--sauge);font-size:0.8rem">Publié</span>'}
+        ${!a.valide ? `<button class="btn-valider" onclick="validerAvis(${a.id})">✓ Valider</button>` : '<span style="color:var(--sauge);font-size:0.8rem">✓ Publié</span>'}
         <button class="btn-supprimer" onclick="supprimerAvis(${a.id})" style="margin-left:0.5rem">Supprimer</button>
       </td>
     </tr>

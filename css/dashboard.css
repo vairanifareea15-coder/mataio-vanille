@@ -163,6 +163,22 @@
 .dash-tab.active { color: var(--brun); border-bottom-color: var(--rose); }
 .dash-tab:hover { color: var(--brun); }
 
+.dash-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rose);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  padding: 0 5px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
 /* ===== TABLE ===== */
 .dash-section { padding: 2rem 4%; }
 
