@@ -1,6 +1,18 @@
 /* ===== NAVBAR CHECKOUT ===== */
 .navbar-checkout { justify-content: space-between; }
 
+.checkout-back {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.checkout-back:hover { opacity: 1; }
+
 .checkout-secure {
   font-size: 0.85rem;
   color: var(--green);

@@ -242,9 +242,9 @@ function initNavbar(type) {
   if (type === 'checkout') {
     root.innerHTML = `
       <header class="navbar navbar-checkout">
+        <a href="javascript:history.back()" class="checkout-back">← Retour</a>
         <div class="nav-brand">
           <a href="index.html" style="display:flex;align-items:center;gap:.6rem;text-decoration:none">
-
             <span class="brand-name">Mataio Vanille</span>
           </a>
         </div>
