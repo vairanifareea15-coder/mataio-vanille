@@ -69,7 +69,6 @@ function renderProduct(product) {
       <button class="pd-add-btn" onclick="addCurrentToCart()">
         Ajouter au panier — ${formatPrice(product.priceXPF)}
       </button>
-      <button class="pd-wishlist-btn">Ajouter à ma liste de souhaits</button>
     </div>
   `;
 
