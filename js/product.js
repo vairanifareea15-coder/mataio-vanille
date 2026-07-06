@@ -42,14 +42,7 @@ function renderProduct(product) {
         <span class="pd-rating-count">(${product.reviewCount} avis)</span>
       </div>
 
-      <div class="currency-bar" style="margin-bottom:12px;">
-        <span class="currency-label">Devise :</span>
-        <div class="currency-switcher">
-          <button class="currency-btn ${currentCurrency === 'XPF' ? 'active' : ''}" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
-          <button class="currency-btn ${currentCurrency === 'EUR' ? 'active' : ''}" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
-          <button class="currency-btn ${currentCurrency === 'USD' ? 'active' : ''}" data-currency="USD" onclick="setCurrency('USD')">USD</button>
-        </div>
-      </div>
+
       <div class="pd-price-wrap">
         <span class="pd-price" id="pdPrice">${formatPrice(product.priceXPF)}</span>
         <span class="pd-unit">/ ${esc(product.unit)}</span>
