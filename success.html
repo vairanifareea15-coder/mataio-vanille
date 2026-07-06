@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Commande confirmée — Mataio Vanille</title>
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,18 +15,69 @@
   <div class="vn-nature"></div>
   <div id="navbar-root"></div>
 
-  <section style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:2rem">
-    <div style="text-align:center;max-width:480px">
-      <div style="font-size:4rem;margin-bottom:1rem">✅</div>
-      <h1 style="font-family:'Playfair Display',serif;margin-bottom:1rem">Commande confirmée !</h1>
-      <p style="color:var(--gris);margin-bottom:0.5rem">Merci pour votre commande. Votre paiement a bien été reçu.</p>
-      <p style="color:var(--gris);margin-bottom:2rem">Votre colis sera expédié depuis Raiatea dans les 48h. Vous recevrez un email de suivi dès l'expédition.</p>
-      <a href="index.html" class="btn-primary">← Retour à la boutique</a>
+  <section style="min-height:88vh;display:flex;align-items:center;justify-content:center;padding:4rem 2rem;">
+    <div style="text-align:center;max-width:540px;animation:vnFade 0.9s ease both;">
+
+      <!-- Icône -->
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(122,155,126,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7A9B7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <!-- Titre -->
+      <div style="font-size:11px;letter-spacing:0.38em;text-transform:uppercase;color:#9A6B3F;margin-bottom:20px;">Commande confirmée</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,5vw,60px);line-height:1.05;margin-bottom:24px;">
+        Merci pour<br><em style="font-weight:400;">votre confiance.</em>
+      </h1>
+
+      <!-- Message -->
+      <p style="font-size:15px;line-height:1.8;color:#5A4636;font-weight:300;margin-bottom:10px;">
+        Votre paiement a bien été reçu. Votre commande est entre les mains de la famille Mataio à Raiatea.
+      </p>
+      <p style="font-size:15px;line-height:1.8;color:#5A4636;font-weight:300;margin-bottom:40px;">
+        Vous recevrez un email de confirmation, puis un email d'expédition avec votre numéro de suivi dès que votre colis part de Polynésie.
+      </p>
+
+      <!-- Étapes -->
+      <div style="display:flex;justify-content:center;gap:0;margin-bottom:48px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 24px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:#7A9B7E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;">1</div>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9A6B3F;">Commande reçue</div>
+        </div>
+        <div style="width:48px;height:1px;background:rgba(58,42,30,0.15);align-self:center;margin-top:-20px;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 24px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(58,42,30,0.1);color:#5A4636;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;">2</div>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9A8A78;">Préparation 48h</div>
+        </div>
+        <div style="width:48px;height:1px;background:rgba(58,42,30,0.15);align-self:center;margin-top:-20px;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 24px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(58,42,30,0.1);color:#5A4636;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;">3</div>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9A8A78;">Expédition</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+        <a href="index.html" class="vn-btn-dark">Retour à la boutique</a>
+        <a href="https://www.instagram.com/mataiovanille" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:8px;font-size:13px;color:#9A6B3F;text-decoration:none;opacity:0.8;transition:opacity 0.2s;"
+           onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          Suivre @mataiovanille sur Instagram
+        </a>
+      </div>
+
     </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/shared.js"></script>
-  <script>initNavbar('index');</script>
+  <script>
+    initNavbar('index');
+    initCart();
+    saveCart([]);
+  </script>
+  <div id="cart-root"></div>
 </body>
 </html>
