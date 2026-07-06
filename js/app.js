@@ -7,37 +7,32 @@ const sb = supabase.createClient(
 
 function renderProductCard(p) {
   const epuise = p.stock === 0;
+  const imgSrc = p.image || 'https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=800&q=80';
+  const bgColor = p.bg || '#E7DBC6';
   return `
-    <div class="product-card ${epuise ? 'product-epuise' : ''}">
-      <a href="product.html?id=${p.id}" class="product-img-link">
-        <div class="product-img" style="background:${p.bg}">
-          ${epuise ? '<span class="product-badge badge-epuise">Épuisé</span>' : p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-        </div>
+    <article class="vn-product-card">
+      <a href="product.html?id=${p.id}" class="vn-product-img vn-stripe" style="background:${bgColor};">
+        <img src="${imgSrc}" alt="${p.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+        ${epuise ? '<span class="vn-product-badge epuise">Épuisé</span>' : p.badge ? `<span class="vn-product-badge">${p.badge}</span>` : ''}
       </a>
-      <div class="product-body">
-        <h3 class="product-name">${p.name}</h3>
-        <div class="product-rating">
-          <span class="stars-sm">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
-          <span class="rating-count">(${p.review_count})</span>
+      <div class="vn-product-body">
+        <div class="vn-product-meta">
+          <a href="product.html?id=${p.id}" class="vn-product-name">${p.name}</a>
+          <span class="vn-product-price">${formatPrice(p.price_xpf)}</span>
         </div>
-        <p class="product-desc">${p.short_desc}</p>
-        <div class="product-footer">
-          <div>
-            <div class="product-price">
-              ${formatPrice(p.price_xpf)}
-              <span>/ ${p.unite}</span>
-            </div>
-            ${p.price_per_kg_xpf ? `<div class="price-per-kg">${formatPrice(p.price_per_kg_xpf)} / kg</div>` : ''}
-          </div>
-          <div class="product-actions">
-            <a href="product.html?id=${p.id}" class="btn-outline">Voir</a>
-            ${epuise
-              ? '<button class="add-btn btn-epuise" disabled>Épuisé</button>'
-              : `<button class="add-btn" onclick="addToCartFromDB(${p.id})">+ Ajouter</button>`}
-          </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+          <span style="color:#9A6B3F;font-size:12px;letter-spacing:1px;">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
+          <span style="font-size:12px;color:#8A7457;">(${p.review_count})</span>
+        </div>
+        <p class="vn-product-desc">${p.short_desc}</p>
+        <div style="display:flex;gap:8px;margin-top:auto;">
+          <a href="product.html?id=${p.id}" class="vn-view-btn">Voir</a>
+          ${epuise
+            ? '<button class="vn-add-btn" disabled style="flex:1">Épuisé</button>'
+            : `<button class="vn-add-btn" onclick="addToCartFromDB(${p.id})" style="flex:1">+ Panier</button>`}
         </div>
       </div>
-    </div>
+    </article>
   `;
 }
 
@@ -90,28 +85,25 @@ async function loadGalerie() {
   const { data } = await sb.from('galerie').select('*').order('section').order('ordre');
   if (!data) return;
 
-  const histoire   = data.filter(p => p.section === 'histoire');
   const provenance = data.filter(p => p.section === 'provenance');
+  const histoire   = data.filter(p => p.section === 'histoire');
 
-  const galerieHistoire = document.getElementById('galerieHistoire');
-  if (galerieHistoire && histoire.length > 0) {
-    galerieHistoire.innerHTML = `
-      <div class="histoire-photo-main">
-        <img src="${histoire[0].url}" alt="${histoire[0].legende || ''}" />
-        <div class="histoire-photo-caption">${histoire[0].legende || ''}</div>
-      </div>
-      ${histoire[1] ? `
-      <div class="histoire-photo-side">
-        <img src="${histoire[1].url}" alt="${histoire[1].legende || ''}" />
-        <div class="histoire-photo-caption">${histoire[1].legende || ''}</div>
-      </div>` : ''}
-    `;
+  // Mise à jour de l'image de la section Origine
+  const origineImg = document.getElementById('origineImg');
+  if (origineImg && provenance.length > 0) {
+    origineImg.src = provenance[0].url;
+    origineImg.alt = provenance[0].legende || '';
   }
 
-  const mapPhoto = document.querySelector('.map-photo img');
-  if (mapPhoto && provenance.length > 0) {
-    mapPhoto.src = provenance[0].url;
-    mapPhoto.alt = provenance[0].legende || '';
+  // Mise à jour de la galerie histoire (section cachée mais présente)
+  const galerieHistoire = document.getElementById('galerieHistoire');
+  if (galerieHistoire && histoire.length > 0) {
+    galerieHistoire.innerHTML = histoire.slice(0, 2).map(p => `
+      <div class="galerie-item">
+        <img src="${p.url}" alt="${p.legende || ''}" />
+        ${p.legende ? `<div class="galerie-caption">${p.legende}</div>` : ''}
+      </div>
+    `).join('');
   }
 }
 

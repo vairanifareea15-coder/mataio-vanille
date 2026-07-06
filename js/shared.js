@@ -230,20 +230,18 @@ function initNavbar(type) {
   }
 
   root.innerHTML = `
-    <header class="navbar">
-      <div class="nav-brand">
-        <a href="${base || 'index.html'}" style="display:flex;align-items:center;gap:.6rem;text-decoration:none">
-          <svg width="9" height="24" viewBox="0 0 6 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M3,0.5 C1.5,0.5 0.5,3 0.5,7 L0.5,14 C0.5,17.5 1.5,19.5 3,19.5 C4.5,19.5 5.5,17.5 5.5,14 L5.5,7 C5.5,3 4.5,0.5 3,0.5 Z" fill="#C4748A"/><line x1="3" y1="2" x2="3" y2="18" stroke="#A85070" stroke-width="0.6" stroke-dasharray="1.5 2"/></svg>
-          <span class="brand-name">Mataio Vanille</span>
-        </a>
-      </div>
-      <nav class="nav-links">
-        <a href="${base}#produits">Produits</a>
-        <a href="${base}#histoire">Notre Histoire</a>
-        <a href="${base}#provenance">Notre Vanille</a>
+    <header class="vn-navbar navbar">
+      <nav class="nav-links vn-nav">
+        <a href="${base}#produits">Boutique</a>
+        <a href="${base}#origine">Origine</a>
+        <a href="${base}#produits">Savoir-faire</a>
         <a href="${base}#contact">Contact</a>
       </nav>
-      <div class="nav-actions">
+      <a href="${base || 'index.html'}" class="nav-brand">
+        <span class="brand-name">Mataio Vanille</span>
+        <span class="brand-subtitle">Raiatea · Polynésie</span>
+      </a>
+      <div class="nav-actions vn-actions">
         <button class="cart-btn" onclick="toggleCart()">
           Panier <span class="cart-count" id="cartCount">0</span>
         </button>

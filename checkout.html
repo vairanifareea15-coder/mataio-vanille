@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/checkout.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
+  <div class="vn-nature"></div>
   <div id="navbar-root"></div>
 
   <!-- ÉTAPES -->
@@ -22,12 +23,7 @@
     <div class="step-line"></div>
     <div class="step" id="step-indicator-2">
       <div class="step-circle">2</div>
-      <span>Paiement</span>
-    </div>
-    <div class="step-line"></div>
-    <div class="step" id="step-indicator-3">
-      <div class="step-circle">3</div>
-      <span>Confirmation</span>
+      <span>Paiement Stripe</span>
     </div>
   </div>
 
@@ -40,7 +36,7 @@
       <!-- ÉTAPE 1 : LIVRAISON -->
       <div id="formStep1">
         <h2 class="form-title">Informations de livraison</h2>
-        <form id="deliveryForm" onsubmit="goToStep2(event)">
+        <form id="deliveryForm" onsubmit="goToStripe(event)">
           <div class="form-row">
             <div class="form-group">
               <label>Prénom *</label>
@@ -103,60 +99,8 @@
             </label>
           </div>
 
-          <button type="submit" class="btn-primary btn-full btn-next">Continuer vers le paiement →</button>
+          <button type="submit" class="btn-primary btn-full btn-next">Payer en sécurité →</button>
         </form>
-      </div>
-
-      <!-- ÉTAPE 2 : PAIEMENT -->
-      <div id="formStep2" style="display:none">
-        <h2 class="form-title">Informations de paiement</h2>
-        <form id="paymentForm" onsubmit="goToStep3(event)">
-          <div class="form-group">
-            <label>Numéro de carte *</label>
-            <div class="card-input-wrap">
-              <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456"
-                maxlength="19" oninput="formatCard(this)" required />
-              <span class="card-icons">💳</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Titulaire de la carte *</label>
-            <input type="text" id="cardName" placeholder="MARIE DUPONT" required />
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Date d'expiration *</label>
-              <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5"
-                oninput="formatExpiry(this)" required />
-            </div>
-            <div class="form-group">
-              <label>CVV *</label>
-              <input type="text" id="cardCvv" placeholder="123" maxlength="3"
-                oninput="this.value=this.value.replace(/\D/g,'')" required />
-            </div>
-          </div>
-
-          <div class="secure-notice">
-            Vos données bancaires sont chiffrées et sécurisées. Nous ne conservons aucune information de paiement.
-          </div>
-
-          <div class="btn-row">
-            <button type="button" class="btn-back" onclick="backToStep1()">← Retour</button>
-            <button type="submit" class="btn-primary btn-next">Confirmer la commande →</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- ÉTAPE 3 : CONFIRMATION -->
-      <div id="formStep3" style="display:none">
-        <div class="confirmation-box">
-          <div class="confirmation-icon">✅</div>
-          <h2>Commande confirmée !</h2>
-          <p>Merci pour votre commande. Un email de confirmation a été envoyé à <strong id="confirmEmail"></strong>.</p>
-          <p>Votre colis sera expédié dans les 48h. Vous recevrez un email de suivi dès l'expédition.</p>
-          <div class="order-ref">N° de commande : <strong id="orderRef"></strong></div>
-          <a href="index.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block">← Retour à la boutique</a>
-        </div>
       </div>
 
     </div>

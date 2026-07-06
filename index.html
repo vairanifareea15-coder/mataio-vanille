@@ -6,210 +6,229 @@
   <title>Mataio Vanille — La vanille de Raiatea, Polynésie Française</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Background naturel fixe -->
+  <div class="vn-nature"></div>
 
   <div id="navbar-root"></div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <p class="hero-tag">Raiatea · Polynésie Française</p>
-      <h1>La Vanille de<br/>Notre Grand-Père</h1>
-      <p class="hero-sub">Depuis son île de Raiatea, notre grand-père cultive sa vanille avec passion et patience, comme le faisaient ses ancêtres. Ses petits-enfants vous la livrent directement, pour que son travail soit enfin connu du monde entier.</p>
-      <a href="#produits" class="btn-primary">Découvrir sa vanille</a>
+  <section class="vn-hero" style="display:grid;grid-template-columns:1.05fr 1fr;min-height:88vh;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;animation:vnFade 0.9s ease both;">
+      <div style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#9A6B3F;margin-bottom:28px;">Vanille de Tahiti · Île de Raiatea</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(46px,5.6vw,92px);line-height:0.98;letter-spacing:-0.01em;margin-bottom:30px;">
+        La Vanille de<br>Notre<br><em style="font-weight:400;">Grand-Père.</em>
+      </h1>
+      <p style="font-size:16px;line-height:1.75;max-width:440px;color:#5A4636;font-weight:300;margin-bottom:40px;">
+        Des gousses charnues, brillantes et gorgées de caviar, préparées par notre grand-père sur l'île de Raiatea — et expédiées par ses petits-enfants directement dans votre cuisine.
+      </p>
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
+        <a href="#produits" class="vn-btn-dark">Découvrir la récolte</a>
+        <a href="#origine" class="vn-btn-line">Notre histoire →</a>
+      </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-img-wrap">
-        <img
-          src="https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=600&q=80"
-          alt="Gousses de vanille de Raiatea, Polynésie Française"
-          class="hero-photo"
-        />
+    <div class="vn-stripe vn-hero-img" style="position:relative;background:#E7DBC6;display:flex;align-items:flex-end;justify-content:center;padding:30px;overflow:hidden;">
+      <img
+        src="https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=900&q=80"
+        alt="Gousses de vanille de Raiatea"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;opacity:0.7;"
+      />
+      <div style="position:relative;bottom:0;right:0;background:#F6F0E6;padding:22px 26px;max-width:220px;z-index:1;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;">9 mois</div>
+        <div style="font-size:12px;letter-spacing:0.06em;color:#5A4636;margin-top:6px;">de maturation sur la liane — jamais échaudée, séchée au soleil de l'île.</div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stat">
-      <span class="stat-num">30+</span>
-      <span class="stat-label">Ans de passion</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">1</span>
-      <span class="stat-label">Île, une famille</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100%</span>
-      <span class="stat-label">Artisanal & Naturel</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">PF</span>
-      <span class="stat-label">Raiatea, Polynésie</span>
-    </div>
-  </section>
+
+  <!-- MARQUEE VALEURS -->
+  <div class="vn-marquee">
+    <span>Récolte à la main</span><span class="vn-dot">◦</span>
+    <span>Vente directe famille</span><span class="vn-dot">◦</span>
+    <span>Mûrie sur la liane</span><span class="vn-dot">◦</span>
+    <span>Sans additif</span>
+  </div>
 
   <!-- PRODUITS -->
-  <section class="produits" id="produits">
-    <div class="section-header">
-      <h2>Les Produits de Papi Mataio</h2>
-      <p>Cultivés à la main à Raiatea, expédiés directement depuis l'île</p>
-    </div>
-    <div class="currency-bar">
-      <span class="currency-label">Devise :</span>
-      <div class="currency-switcher">
-        <button class="currency-btn active" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
-        <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
-        <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD')">USD</button>
+  <section id="produits" class="vn-pad vn-section-produits">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:54px;flex-wrap:wrap;gap:20px;">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9A6B3F;margin-bottom:14px;">La sélection</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4.4vw,60px);line-height:1;">Nos vanilles d'exception</h2>
+      </div>
+      <div class="currency-bar" style="margin-bottom:0;">
+        <span class="currency-label">Devise :</span>
+        <div class="currency-switcher">
+          <button class="currency-btn active" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
+          <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
+          <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD')">USD</button>
+        </div>
       </div>
     </div>
-    <div class="products-grid" id="productsGrid"></div>
-  </section>
-
-  <!-- HISTOIRE -->
-  <section class="histoire" id="histoire">
-    <div class="section-header">
-      <h2>L'histoire de Papi Mataio</h2>
-      <p>Une île isolée, une passion transmise, une famille unie</p>
-    </div>
-
-    <div class="histoire-photos" id="galerieHistoire">
-      <div class="histoire-photo-main">
-        <img src="https://images.unsplash.com/photo-1676405328043-85738f8473ba?auto=format&fit=crop&w=900&q=80" alt="Vue aérienne de Raiatea" />
-        <div class="histoire-photo-caption">Raiatea vue du ciel — l'île sacrée de Polynésie</div>
-      </div>
-      <div class="histoire-photo-side">
-        <img src="https://images.unsplash.com/photo-1665904457714-df18e8c142a1?auto=format&fit=crop&w=500&q=80" alt="Lagon de Raiatea" />
-        <div class="histoire-photo-caption">Le lagon cristallin qui entoure l'île</div>
-      </div>
-    </div>
-
-    <div class="histoire-content">
-      <div class="histoire-card">
-        <div class="histoire-num">01</div>
-        <h3>Le grand-père</h3>
-        <p>Depuis plus de 30 ans, notre grand-père cultive sa vanille sur l'île de Raiatea. Ses mains connaissent chaque plante, chaque gousse. Il a appris ce savoir-faire de ses propres parents, qui le tenaient de leurs ancêtres polynésiens.</p>
-      </div>
-      <div class="histoire-card">
-        <div class="histoire-num">02</div>
-        <h3>L'île de Raiatea</h3>
-        <p>Raiatea est une île isolée de Polynésie Française, considérée comme l'île sacrée par les Polynésiens. Loin des circuits commerciaux, la vanille y pousse dans un environnement préservé, sous un soleil tropical généreux.</p>
-      </div>
-      <div class="histoire-card">
-        <div class="histoire-num">03</div>
-        <h3>Les petits-enfants</h3>
-        <p>Nous sommes ses petits-enfants. Partis étudier et travailler sur le continent, nous voulons que le monde découvre la vanille de Papi. Ce site, c'est notre façon de l'aider et de prolonger son héritage.</p>
-      </div>
+    <div class="vn-grid4" id="productsGrid">
+      <p style="text-align:center;color:#8A7457;padding:3rem;grid-column:1/-1;">Chargement…</p>
     </div>
   </section>
 
-  <!-- PROVENANCE -->
-  <section class="provenance" id="provenance">
-    <div class="provenance-content">
-      <div class="provenance-text">
-        <h2>De Raiatea à votre cuisine</h2>
-        <p>La vanille de notre grand-père pousse sur son lopin de terre à Raiatea, île volcanique de Polynésie Française. Loin des grandes exploitations industrielles, chaque plant est soigné à la main, avec une attention que seul un cultivateur passionné peut apporter.</p>
-        <p>Chaque gousse est cueillie à maturité optimale, puis séchée selon un processus artisanal de plusieurs mois. Le résultat : une vanille charnue, profondément parfumée, aux notes florales typiques de la Polynésie.</p>
-        <ul class="features">
-          <li>Cultivée à la main à Raiatea, Polynésie Française</li>
-          <li>Zéro pesticide, zéro intrant chimique</li>
-          <li>Production familiale et artisanale</li>
-          <li>Emballage sous vide pour fraîcheur optimale</li>
-        </ul>
-      </div>
-      <div class="provenance-map">
-        <div class="map-card">
-          <div class="map-photo">
-            <img src="https://images.unsplash.com/photo-1712960258445-35ea82a94393?auto=format&fit=crop&w=600&q=80" alt="Montagnes de Raiatea" />
-          </div>
-          <div class="map-card-body">
-            <div class="map-icon">
-              <svg width="36" height="36" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <g transform="translate(10,10)">
-                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85"/>
-                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(72)"/>
-                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(144)"/>
-                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(216)"/>
-                  <ellipse cx="0" cy="-5" rx="2" ry="5" fill="#C4748A" opacity="0.85" transform="rotate(288)"/>
-                  <circle r="2.5" fill="#C4974A"/>
-                </g>
-              </svg>
-            </div>
-            <h3>Raiatea</h3>
-            <p>Polynésie Française</p>
-            <span class="map-tag">L'île sacrée</span>
-          </div>
+  <!-- ORIGINE -->
+  <section id="origine" class="vn-split" style="background:#ECE2D0;">
+    <div class="vn-stripe vn-imgpanel" style="position:relative;min-height:580px;background:#DDCFB4;overflow:hidden;">
+      <img
+        id="origineImg"
+        src="https://images.unsplash.com/photo-1676405328043-85738f8473ba?auto=format&fit=crop&w=900&q=80"
+        alt="Raiatea vue du ciel"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.8;"
+      />
+      <div style="position:absolute;top:28px;left:28px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#F6F0E6;text-shadow:0 1px 4px rgba(0,0,0,0.4);">Raiatea, Polynésie Française</div>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:9vh 6vw;">
+      <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9A6B3F;margin-bottom:22px;">Polynésie française · Île de Raiatea</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.8vw,54px);line-height:1.04;margin-bottom:26px;">Du faapu<br>à votre cuisine.</h2>
+      <p style="font-size:16px;line-height:1.8;color:#5A4636;font-weight:300;max-width:480px;margin-bottom:22px;">
+        Mataio, notre grand-père, est préparateur de vanille à Raiatea. Il sélectionne et prépare la vanille verte directement chez les agriculteurs de l'île — des faapu qu'il connaît depuis vingt ans.
+      </p>
+      <p style="font-size:16px;line-height:1.8;color:#5A4636;font-weight:300;max-width:480px;margin-bottom:38px;">
+        Ici, pas d'échaudage : la gousse verte sèche au soleil et se masse à la main, semaine après semaine, sous ses yeux. C'est là que naît son parfum d'anis et de fleurs blanches.
+      </p>
+      <div style="display:flex;gap:48px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1;">100%</div>
+          <div style="font-size:12px;letter-spacing:0.06em;color:#6B5644;margin-top:6px;">familial, de la gousse verte au colis</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1;">20 ans</div>
+          <div style="font-size:12px;letter-spacing:0.06em;color:#6B5644;margin-top:6px;">de savoir-faire transmis</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- AVIS -->
-  <section class="avis">
-    <div class="section-header">
-      <h2>Ce que disent nos clients</h2>
+  <!-- SAVOIR-FAIRE / PILIERS -->
+  <section class="vn-pad" style="padding-top:90px;padding-bottom:90px;">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4vw,56px);text-align:center;margin-bottom:64px;line-height:1;">Pourquoi notre vanille</h2>
+    <div class="vn-grid3" style="border-top:1px solid rgba(58,42,30,0.12);border-bottom:1px solid rgba(58,42,30,0.12);gap:1px;background:rgba(58,42,30,0.12);">
+      <div style="background:#F6F0E6;padding:46px 38px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#9A6B3F;margin-bottom:20px;">I.</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;margin-bottom:14px;">Vente directe</h3>
+        <p style="font-size:14px;line-height:1.7;color:#5A4636;font-weight:300;">Aucun intermédiaire entre notre grand-père et vous. Du faapu de Raiatea à votre porte, en direct de la famille.</p>
+      </div>
+      <div style="background:#F6F0E6;padding:46px 38px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#9A6B3F;margin-bottom:20px;">II.</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;margin-bottom:14px;">Sans additif</h3>
+        <p style="font-size:14px;line-height:1.7;color:#5A4636;font-weight:300;">Zéro pesticide, zéro intrant chimique. La vanille pousse dans un environnement préservé, séchée et massée à la main.</p>
+      </div>
+      <div style="background:#F6F0E6;padding:46px 38px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#9A6B3F;margin-bottom:20px;">III.</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;margin-bottom:14px;">Savoir-faire ancestral</h3>
+        <p style="font-size:14px;line-height:1.7;color:#5A4636;font-weight:300;">Transmis de génération en génération, le savoir-faire de Papi Mataio s'étend sur plus de 20 ans de préparation artisanale.</p>
+      </div>
     </div>
-    <div class="avis-grid">
-      <div class="avis-card">
-        <div class="stars">★★★★★</div>
-        <p>"J'ai reçu mes gousses et j'ai pleuré. Ça m'a rappelé la vanille de ma grand-mère à Tahiti. Une qualité qu'on ne trouve plus en France. Merci infiniment à toute la famille !"</p>
-        <span class="client-name">— Hina T., Papeete</span>
+  </section>
+
+  <!-- CITATION -->
+  <section style="background:#2A1D13;color:#EFE6D6;padding:110px 48px;text-align:center;">
+    <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#C8A24B;margin-bottom:34px;">Le mot du chef</div>
+    <blockquote style="font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(28px,3.6vw,50px);line-height:1.28;max-width:920px;margin:0 auto 34px;">
+      « Une gousse fendue libère un parfum d'anis et de fleurs blanches. La vanille de Tahiti ne ressemble à aucune autre. »
+    </blockquote>
+    <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#B8A88E;">Camille Roussel — Cheffe pâtissière</div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="vn-pad" style="padding-top:90px;padding-bottom:90px;background:#F0E8E4;">
+    <div style="text-align:center;margin-bottom:54px;">
+      <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9A6B3F;margin-bottom:14px;">Témoignages</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1;">Ce que disent nos clients</h2>
+    </div>
+    <div class="vn-grid3" style="gap:1px;background:rgba(196,116,138,0.15);border:1px solid rgba(196,116,138,0.15);">
+      <div style="background:#fff;padding:2.5rem;">
+        <div style="color:#9A6B3F;font-size:14px;letter-spacing:3px;margin-bottom:1.25rem;">★★★★★</div>
+        <p style="font-size:15px;line-height:1.8;color:#6B5644;font-weight:300;font-style:italic;margin-bottom:1.5rem;">"J'ai reçu mes gousses et j'ai pleuré. Ça m'a rappelé la vanille de ma grand-mère à Tahiti. Une qualité qu'on ne trouve plus en France. Merci infiniment à toute la famille !"</p>
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9A6B3F;">— Hina T., Papeete</span>
       </div>
-      <div class="avis-card">
-        <div class="stars">★★★★★</div>
-        <p>"J'ai découvert cette boutique sur Instagram. L'histoire du grand-père m'a touchée. La vanille est sublime — florale, charnue, rien à voir avec ce qu'on achète en supermarché."</p>
-        <span class="client-name">— Marie-Claire D., Pâtissière, Lyon</span>
+      <div style="background:#fff;padding:2.5rem;">
+        <div style="color:#9A6B3F;font-size:14px;letter-spacing:3px;margin-bottom:1.25rem;">★★★★★</div>
+        <p style="font-size:15px;line-height:1.8;color:#6B5644;font-weight:300;font-style:italic;margin-bottom:1.5rem;">"J'ai découvert cette boutique sur Instagram. L'histoire du grand-père m'a touchée. La vanille est sublime — florale, charnue, rien à voir avec ce qu'on achète en supermarché."</p>
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9A6B3F;">— Marie-Claire D., Pâtissière, Lyon</span>
       </div>
-      <div class="avis-card">
-        <div class="stars">★★★★★</div>
-        <p>"Produit exceptionnel et histoire magnifique. On sent que c'est fait avec amour. Je commande régulièrement et j'offre leurs packs à mes proches. Continuez ainsi !"</p>
-        <span class="client-name">— Thomas R., Chef cuisinier, Paris</span>
+      <div style="background:#fff;padding:2.5rem;">
+        <div style="color:#9A6B3F;font-size:14px;letter-spacing:3px;margin-bottom:1.25rem;">★★★★★</div>
+        <p style="font-size:15px;line-height:1.8;color:#6B5644;font-weight:300;font-style:italic;margin-bottom:1.5rem;">"Produit exceptionnel et histoire magnifique. On sent que c'est fait avec amour. Je commande régulièrement et j'offre leurs packs à mes proches. Continuez ainsi !"</p>
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9A6B3F;">— Thomas R., Chef cuisinier, Paris</span>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="vn-pad" style="padding-top:90px;padding-bottom:90px;">
+    <div style="max-width:720px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#9A6B3F;margin-bottom:18px;">Questions fréquentes</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,3.8vw,50px);">FAQ</h2>
+      </div>
+      <div id="faqList" style="display:flex;flex-direction:column;border-top:1px solid rgba(58,42,30,0.18);"></div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="section-header">
-      <h2>Nous contacter</h2>
-      <p>Une question sur nos produits ou l'histoire de Papi Mataio ? On vous répond avec plaisir.</p>
-    </div>
-    <form class="contact-form" onsubmit="submitForm(event)">
-      <div class="form-row">
-        <input id="contactNom" type="text" placeholder="Votre prénom" required />
-        <input id="contactEmail" type="email" placeholder="Votre email" required />
+  <section id="contact" class="vn-pad" style="padding-top:90px;padding-bottom:90px;background:#ECE2D0;">
+    <div style="max-width:680px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9A6B3F;margin-bottom:14px;">Nous écrire</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4vw,50px);line-height:1;">Nous contacter</h2>
+        <p style="margin-top:14px;font-size:15px;color:#6B5644;font-weight:300;">Une question sur nos produits ou l'histoire de Papi Mataio ? On vous répond avec plaisir.</p>
       </div>
-      <input id="contactSujet" type="text" placeholder="Sujet" />
-      <textarea id="contactMessage" placeholder="Votre message..." rows="5" required></textarea>
-      <button type="submit" class="btn-primary btn-full" id="contactBtn">Envoyer le message</button>
-    </form>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <input id="contactNom" type="text" placeholder="Votre prénom" required />
+          <input id="contactEmail" type="email" placeholder="Votre email" required />
+        </div>
+        <input id="contactSujet" type="text" placeholder="Sujet" />
+        <textarea id="contactMessage" placeholder="Votre message..." rows="5" required></textarea>
+        <button type="submit" class="vn-btn-dark btn-full" id="contactBtn">Envoyer le message</button>
+      </form>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <span class="brand-name">Mataio Vanille</span>
-        <p>La vanille artisanale de Papi Mataio, cultivée à Raiatea, Polynésie Française. Une histoire de famille, un produit d'exception.</p>
+  <footer class="vn-pad" style="background:#ECE2D0;padding-top:64px;padding-bottom:40px;border-top:1px solid rgba(58,42,30,0.12);">
+    <div class="vn-foot" style="margin-bottom:50px;">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;">Mataio Vanille</div>
+        <div style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#9A6B3F;margin:4px 0 18px;">Raiatea · Polynésie</div>
+        <p style="font-size:13px;line-height:1.7;color:#5A4636;font-weight:300;max-width:260px;">La vanille de Tahiti de notre grand-père, préparée à Raiatea et expédiée par ses petits-enfants.</p>
       </div>
-      <div class="footer-links">
-        <h4>Navigation</h4>
-        <a href="#produits">Produits</a>
-        <a href="#histoire">Notre Histoire</a>
-        <a href="#provenance">Notre Vanille</a>
-        <a href="#contact">Contact</a>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#2A1D13;margin-bottom:16px;">Boutique</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#5A4636;">
+          <a href="#produits" style="color:#5A4636;text-decoration:none;">Gousses 1ère catégorie</a>
+          <a href="#produits" style="color:#5A4636;text-decoration:none;">Gousses 2ème catégorie</a>
+          <a href="#produits" style="color:#5A4636;text-decoration:none;">Poudre de vanille</a>
+        </div>
       </div>
-      <div class="footer-contact">
-        <h4>Contact</h4>
-        <p>contact@mataio-vanille.fr</p>
-        <p>Raiatea, Polynésie Française</p>
-        <p>Famille Mataio</p>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#2A1D13;margin-bottom:16px;">La Maison</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#5A4636;">
+          <a href="#origine" style="color:#5A4636;text-decoration:none;">Notre histoire</a>
+          <a href="#produits" style="color:#5A4636;text-decoration:none;">Savoir-faire</a>
+          <a href="#contact" style="color:#5A4636;text-decoration:none;">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#2A1D13;margin-bottom:16px;">Aide</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#5A4636;">
+          <a href="#faqList" style="color:#5A4636;text-decoration:none;">FAQ &amp; livraison</a>
+          <a href="#faqList" style="color:#5A4636;text-decoration:none;">Conservation</a>
+          <a href="mailto:contact@mataio-vanille.fr" style="color:#5A4636;text-decoration:none;">contact@mataio-vanille.fr</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Mataio Vanille — Tous droits réservés</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:26px;border-top:1px solid rgba(58,42,30,0.12);font-size:12px;color:#6B5644;">
+      <span>© 2026 Mataio Vanille. Tous droits réservés.</span>
+      <span style="letter-spacing:0.06em;">Raiatea, Polynésie Française · Famille Mataio</span>
     </div>
   </footer>
 
@@ -219,5 +238,39 @@
   <script src="js/shared.js"></script>
   <script>initNavbar('index'); initCart();</script>
   <script src="js/app.js"></script>
+  <script>
+    // FAQ accordion
+    const FAQS = [
+      { q: 'Quelle est la différence entre 1ère et 2ème catégorie ?', a: 'La 1ère catégorie regroupe les gousses longues (14-17 cm), noires, souples et charnues — parfaites pour le quotidien. La 2ème catégorie regroupe des gousses plus courtes ou légèrement moins uniformes, souvent encore plus concentrées en vanilline, idéales pour les extraits et infusions.' },
+      { q: 'Comment conserver mes gousses de vanille ?', a: 'Enveloppez vos gousses dans du papier alimentaire ou du film plastique, puis placez-les dans un contenant hermétique à l\'abri de la lumière et de l\'humidité, à température ambiante. Évitez le réfrigérateur. Bien conservées, elles se gardent 12 à 18 mois.' },
+      { q: 'Livrez-vous en dehors de France métropolitaine ?', a: 'Oui ! Nous expédions vers la France métropolitaine, la DOM-TOM, et l\'Europe. Les délais et frais varient selon la destination. Contactez-nous pour tout envoi hors Europe.' },
+      { q: 'Puis-je réutiliser mes gousses après grattage ?', a: 'Absolument. Les gousses épuisées après grattage peuvent être plongées dans du sucre pour faire du sucre vanillé maison, ou dans de l\'alcool pour un extrait de vanille artisanal.' },
+      { q: 'Quand partent les commandes ?', a: 'Les commandes passées avant 14h (heure de Polynésie) sont expédiées le jour même ou le lendemain. Nous vous envoyons un email de confirmation avec le numéro de suivi.' },
+    ];
+
+    function renderFaq() {
+      const list = document.getElementById('faqList');
+      if (!list) return;
+      list.innerHTML = FAQS.map((f, i) => `
+        <div style="border-bottom:1px solid rgba(58,42,30,0.18);">
+          <button onclick="toggleFaq(${i})" id="faq-btn-${i}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;background:transparent;border:none;cursor:pointer;padding:22px 4px;font-family:inherit;text-align:left;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:#2A1D13;">${f.q}</span>
+            <span id="faq-mark-${i}" style="font-size:20px;color:#9A6B3F;flex:0 0 auto;transition:transform 0.2s;">+</span>
+          </button>
+          <div id="faq-ans-${i}" style="display:none;font-size:15px;line-height:1.75;color:#5A4636;font-weight:300;padding:0 4px 24px;max-width:620px;">${f.a}</div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFaq(i) {
+      const ans = document.getElementById('faq-ans-' + i);
+      const mark = document.getElementById('faq-mark-' + i);
+      const open = ans.style.display !== 'none';
+      ans.style.display = open ? 'none' : 'block';
+      mark.textContent = open ? '+' : '−';
+    }
+
+    document.addEventListener('DOMContentLoaded', renderFaq);
+  </script>
 </body>
 </html>

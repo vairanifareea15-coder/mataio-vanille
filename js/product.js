@@ -88,7 +88,7 @@ function renderProduct(product) {
         <p class="product-desc">${p.shortDesc}</p>
         <div class="product-footer">
           <div class="product-price">
-            ${formatPrice(p.price)}
+            ${formatPrice(p.priceXPF)}
             <span>/ ${p.unit}</span>
           </div>
           <div class="product-actions">
