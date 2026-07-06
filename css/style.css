@@ -291,6 +291,20 @@ a { text-decoration: none; color: inherit; }
 
 .nav-actions { display: flex; align-items: center; gap: 1rem; flex: 1; justify-content: flex-end; }
 
+.nav-currency {
+  display: flex;
+  gap: 1px;
+  border: 1px solid rgba(196,151,74,0.3);
+}
+
+.mobile-currency {
+  display: flex;
+  gap: 1px;
+  border: 1px solid rgba(196,151,74,0.3);
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
 .cart-btn {
   display: flex;
   align-items: center;

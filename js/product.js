@@ -18,7 +18,7 @@ function renderProduct(product) {
   document.getElementById('breadcrumbName').textContent = product.name;
 
   const imageHTML = product.image
-    ? `<img src="${product.image}" alt="${product.name}" />`
+    ? `<img src="${product.image}" alt="${product.name}" loading="eager" />`
     : `<div class="pd-emoji-bg" style="background:${product.bg || '#E7DBC6'}">${product.emoji || ''}</div>`;
 
   document.getElementById('productDetail').innerHTML = `
@@ -79,31 +79,27 @@ function renderProduct(product) {
 
   const related = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
   document.getElementById('relatedGrid').innerHTML = related.map(p => `
-    <div class="product-card">
-      <a href="product.html?id=${p.id}" class="product-img-link">
-        <div class="product-img" style="background:${p.bg}">
-          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-        </div>
+    <article class="vn-product-card">
+      <a href="product.html?id=${p.id}" class="vn-product-img vn-stripe" style="background:${esc(p.bg || '#E7DBC6')};">
+        ${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />` : ''}
+        ${p.badge ? `<span class="vn-product-badge">${esc(p.badge)}</span>` : ''}
       </a>
-      <div class="product-body">
-        <h3 class="product-name">${p.name}</h3>
-        <div class="product-rating">
-          <span class="stars-sm">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
-          <span class="rating-count">(${p.reviewCount})</span>
+      <div class="vn-product-body">
+        <div class="vn-product-meta">
+          <a href="product.html?id=${p.id}" class="vn-product-name">${esc(p.name)}</a>
+          <span class="vn-product-price">${formatPrice(p.priceXPF)}</span>
         </div>
-        <p class="product-desc">${p.shortDesc}</p>
-        <div class="product-footer">
-          <div class="product-price">
-            ${formatPrice(p.priceXPF)}
-            <span>/ ${p.unit}</span>
-          </div>
-          <div class="product-actions">
-            <a href="product.html?id=${p.id}" class="btn-outline">Voir</a>
-            <button class="add-btn" onclick="addToCart(${p.id})">+ Ajouter</button>
-          </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+          <span style="color:#9A6B3F;font-size:12px;">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
+          <span style="font-size:12px;color:#8A7457;">(${p.reviewCount})</span>
+        </div>
+        <p class="vn-product-desc">${esc(p.shortDesc)}</p>
+        <div style="display:flex;gap:8px;margin-top:auto;">
+          <a href="product.html?id=${p.id}" class="vn-view-btn">Voir</a>
+          <button class="vn-add-btn" onclick="addToCart(${p.id})" style="flex:1">+ Panier</button>
         </div>
       </div>
-    </div>
+    </article>
   `).join('');
 
   document.getElementById('productTabsSection').style.display = 'block';

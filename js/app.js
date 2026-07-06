@@ -12,7 +12,7 @@ function renderProductCard(p) {
   return `
     <article class="vn-product-card">
       <a href="product.html?id=${p.id}" class="vn-product-img vn-stripe" style="background:${esc(bgColor)};">
-        <img src="${esc(imgSrc)}" alt="${esc(p.name)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+        <img src="${esc(imgSrc)}" alt="${esc(p.name)}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
         ${epuise ? '<span class="vn-product-badge epuise">Épuisé</span>' : p.badge ? `<span class="vn-product-badge">${esc(p.badge)}</span>` : ''}
       </a>
       <div class="vn-product-body">

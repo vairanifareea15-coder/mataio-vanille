@@ -30,8 +30,26 @@ function updateShipping(radio) {
   renderSummary();
 }
 
+function validateForm(form) {
+  let valid = true;
+  form.querySelectorAll('[required]').forEach(field => {
+    field.classList.remove('field-error');
+    if (!field.value.trim()) {
+      field.classList.add('field-error');
+      valid = false;
+    }
+  });
+  return valid;
+}
+
 async function goToStripe(e) {
   e.preventDefault();
+
+  if (!validateForm(e.target)) {
+    showToast('Veuillez remplir tous les champs obligatoires.');
+    e.target.querySelector('.field-error')?.focus();
+    return;
+  }
 
   const btn = e.target.querySelector('button[type="submit"]');
   btn.textContent = 'Redirection vers le paiement…';
