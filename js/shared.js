@@ -266,11 +266,6 @@ function initNavbar(type) {
         <span class="brand-subtitle">Raiatea · Polynésie</span>
       </a>
       <div class="nav-actions vn-actions">
-        <div class="nav-currency">
-          <button class="currency-btn" data-currency="XPF" onclick="setCurrency('XPF')">XPF</button>
-          <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR')">EUR</button>
-          <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD')">USD</button>
-        </div>
         <button class="cart-btn" onclick="toggleCart()">
           Panier <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -285,11 +280,6 @@ function initNavbar(type) {
       <a href="${base}#origine" onclick="toggleMobileMenu()">Origine</a>
       <a href="${base}#produits" onclick="toggleMobileMenu()">Savoir-faire</a>
       <a href="${base}#contact" onclick="toggleMobileMenu()">Contact</a>
-      <div class="mobile-currency">
-        <button class="currency-btn" data-currency="XPF" onclick="setCurrency('XPF');toggleMobileMenu()">XPF</button>
-        <button class="currency-btn" data-currency="EUR" onclick="setCurrency('EUR');toggleMobileMenu()">EUR</button>
-        <button class="currency-btn" data-currency="USD" onclick="setCurrency('USD');toggleMobileMenu()">USD</button>
-      </div>
     </div>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>`;
 }
