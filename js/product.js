@@ -261,4 +261,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     renderProduct(currentProduct);
   }
+  injectProductSchema(currentProduct);
 });
+
+function injectProductSchema(p) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": p.name,
+    "description": p.desc,
+    "image": p.image || "https://images.unsplash.com/photo-1592788174877-3f99727fd23d?auto=format&fit=crop&w=800&q=80",
+    "brand": { "@type": "Brand", "name": "Mataio Vanille" },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "XPF",
+      "price": p.priceXPF,
+      "availability": (p.stock === 0) ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
+      "url": "https://mataio-vanille.netlify.app/product.html?id=" + p.id,
+      "seller": { "@type": "Organization", "name": "Mataio Vanille" }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": p.rating,
+      "reviewCount": p.reviewCount,
+      "bestRating": 5,
+      "worstRating": 1
+    }
+  };
+  const el = document.getElementById('productJsonLd') || document.createElement('script');
+  el.id = 'productJsonLd';
+  el.type = 'application/ld+json';
+  el.textContent = JSON.stringify(schema);
+  if (!el.parentNode) document.head.appendChild(el);
+}
