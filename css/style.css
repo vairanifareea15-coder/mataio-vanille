@@ -276,7 +276,7 @@ a { text-decoration: none; color: inherit; }
   margin-top: 3px;
 }
 
-.nav-links { display: none; }
+.nav-links { display: flex; gap: 2.5rem; flex: 1; }
 
 .nav-links a {
   font-size: 0.72rem;
@@ -1253,7 +1253,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== MENU MOBILE ===== */
 .hamburger-btn {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
