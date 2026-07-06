@@ -308,6 +308,37 @@ function initCart() {
     <div class="toast" id="toast"></div>`;
 }
 
+// ===== COOKIES RGPD =====
+function initCookieBanner() {
+  if (localStorage.getItem('mataio_cookies')) return;
+  const banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.innerHTML = `
+    <p>Ce site utilise des cookies pour mémoriser votre panier et vos préférences. <a href="index.html#contact" style="color:var(--or);text-underline-offset:3px;">En savoir plus</a></p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accepter</button>
+      <button onclick="refuseCookies()" class="cookie-refuse">Refuser</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+  setTimeout(() => banner.classList.add('show'), 300);
+}
+
+function acceptCookies() {
+  localStorage.setItem('mataio_cookies', 'accepted');
+  closeCookieBanner();
+}
+
+function refuseCookies() {
+  localStorage.setItem('mataio_cookies', 'refused');
+  closeCookieBanner();
+}
+
+function closeCookieBanner() {
+  const banner = document.getElementById('cookieBanner');
+  if (banner) { banner.classList.remove('show'); setTimeout(() => banner.remove(), 400); }
+}
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   updateCartUI();
@@ -319,4 +350,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentCurrency !== 'XPF' && typeof renderProducts === 'function') {
     renderProducts();
   }
+  initCookieBanner();
 });

@@ -1358,3 +1358,44 @@ a { text-decoration: none; color: inherit; }
   .products-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* ===== BANDEAU COOKIES ===== */
+#cookieBanner {
+  position: fixed;
+  bottom: -120px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--brun);
+  color: var(--creme);
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  line-height: 1.6;
+  transition: bottom 0.4s ease;
+}
+#cookieBanner.show { bottom: 0; }
+#cookieBanner p { margin: 0; flex: 1; min-width: 200px; }
+.cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-btns button {
+  padding: 8px 20px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: var(--or);
+  color: var(--brun);
+  transition: opacity 0.2s;
+}
+.cookie-btns button:hover { opacity: 0.85; }
+.cookie-btns .cookie-refuse {
+  background: transparent;
+  color: var(--creme);
+  border: 1px solid rgba(246,240,230,0.3);
+}
